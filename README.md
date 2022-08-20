@@ -11,11 +11,11 @@
 
 # Assumptions
 
-    1.	A real-time Database is not present. Item data and Service provider's data are static and predefined and
+    1.A real-time Database is not present. Item data and Service provider's data are static and predefined and
          are shared between all three services.
-    2.	No security layer is implemented for the services, considering there is no login for the customer,
+    2.No security layer is implemented for the services, considering there is no login for the customer,
          service provider, or admin.
-    3.	We have no UI to show notifications so to update the order status we need to manually hit
+    3.We have no UI to show notifications so to update the order status we need to manually hit
          admin service - API through Postman. 
-    4.	Order service holds order data locally, so if we have multiple instances of order service,
+    4.Order service holds order data locally, so if we have multiple instances of order service,
         data will be inconsistent.Also, if order service is stopped or restored, order data will be gone.
