@@ -1,0 +1,44 @@
+version: "3"
+
+services: 
+    eureka-server: 
+        container_name: eureka-server
+        image: niloybiswas/eureka-server:1
+        ports: 
+                - "9999:9999"
+    apigateway:
+        container_name: apigateway
+        image: niloybiswas/apigateway:1
+        ports: 
+                - "8888:8888"
+        links: 
+                - eureka-server:eureka-server
+        environment: 
+                - eureka_server_url=http://eureka-server:9999/eureka
+    catalogue:
+        container_name: catalogue
+        image: niloybiswas/catalogue:1
+        ports: 
+                - "8040:8040"
+        links: 
+                - eureka-server:eureka-server
+        environment: 
+                - eureka_server_url=http://eureka-server:9999/eureka
+    order:
+        container_name: order
+        image: niloybiswas/order:1
+        ports: 
+                - "8041:8041"
+        links: 
+                - eureka-server:eureka-server
+        environment: 
+                - eureka_server_url=http://eureka-server:9999/eureka
+    service-providers:
+        container_name: service-providers
+        image: niloybiswas/service-providers:1
+        ports: 
+                - "8042:8042"
+        links: 
+                - eureka-server:eureka-server
+        environment: 
+                - eureka_server_url=http://eureka-server:9999/eureka
